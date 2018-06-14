@@ -14,7 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>New project ! Yoohoo</h1>
+    
+        @yield('content')
 
         <script type="text/javascript" src="js/main.js"></script>
     </body>
