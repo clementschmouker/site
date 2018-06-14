@@ -33,8 +33,8 @@ elixir((mix) => {
                 //'resources/lang/**/*'
             ],
             open: false,
-            logPrefix: 'yann',
-            proxy: 'yannferrandin.loc',
+            logPrefix: 'todo',
+            proxy: 'todo.loc',
             notify: false
         });
 })
