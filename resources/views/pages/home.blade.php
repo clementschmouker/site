@@ -2,6 +2,10 @@
 
 @section('content')
 
-    <h1>Time to start !</h1>
+    <header class="header">
+        <div class="header__inner">
+            <h1>Time to start !</h1>
+        </div>
+    </header>
 
 @endsection
