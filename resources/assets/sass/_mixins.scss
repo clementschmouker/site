@@ -8,4 +8,11 @@
     bottom: $bottom;
     left: $left;
 }
+
+
+@mixin maxw($size) {
+    @media screen and (max-width: $size) {
+        @content;
+    }
+}
   

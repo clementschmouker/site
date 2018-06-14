@@ -1,15 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,900");
 .grid-container {
   display: flex;
+  justify-content: space-between;
   position: fixed;
   pointer-events: none;
   top: 0;
   left: 50%;
-  justify-content: space-between;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   max-width: 1024px;
-  padding: 0 80px;
   box-sizing: border-box;
   background: rgba(186, 218, 85, 0.3);
   transform-origin: top center;
@@ -23,9 +22,35 @@
 
 .grid-column {
   display: block;
-  width: 83.7777777778px;
+  width: calc(((100% / 9) - 10px));
   height: 100%;
   background: rgba(0, 255, 0, 0.5);
+}
+
+.ctn {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  padding: 0 10%;
+  margin: 0 auto;
+}
+
+.ctn::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 400px;
+  height: 200px;
+  background: red;
+}
+
+.ctn__inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 html {
