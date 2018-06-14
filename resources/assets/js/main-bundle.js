@@ -6,5 +6,3 @@ console.log('init');
 },{}]},{},[1]);
 
 //# sourceMappingURL=main-bundle.js.map
-
-//# sourceMappingURL=main.js.map

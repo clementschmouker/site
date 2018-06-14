@@ -8,8 +8,14 @@ elixir((mix) => {
         .sass('app.scss')
 
         // js
-        .browserify('main.js', 'public/js/main.js')
-
+        .browserify('main.js', 'resources/assets/js/main-bundle.js')
+        // concatenate
+        .scripts([
+    		'js/main-bundle.js'
+    	],
+    		'public/js/main.js',
+    		'resources/assets/'
+    	)
         // copy files
         .copy('resources/assets/img', 'public/img')
         .copy('resources/assets/videos', 'public/videos')
@@ -25,12 +31,12 @@ elixir((mix) => {
         // sync
         .browserSync({
             files: [
-                'public/*',
-                'resources/*',
+                'public/**',
+                'resources/**',
             ],
             open: false,
-            logPrefix: 'todo',
-            proxy: 'todo.loc',
+            logPrefix: 'clement',
+            proxy: 'clementschmouker.loc',
             notify: false
         });
 })
