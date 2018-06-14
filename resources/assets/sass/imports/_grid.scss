@@ -9,6 +9,7 @@ $col-number: 9;
 $gut-width: 10px;
 $margin: 10%;
 
+
 .grid-container {
     display: flex;
     justify-content: space-between;
@@ -19,7 +20,6 @@ $margin: 10%;
     width: $grid-width;
     height: 100vh;
     max-width: $grid-max-width;
-    // padding: 0 $margin;
     box-sizing: border-box;
 
     background: rgba(#BADA55, .3);
@@ -46,23 +46,15 @@ $margin: 10%;
     position: relative;
     max-width: 100%;
     padding: 0 $margin;
-    // padding: 0 calc(#{$margin} + ((#{$grid-max-width} - #{$grid-width}) / 2));
     margin: 0 auto;
-
-    &::before {
-        content: '';
-        display: block;
-        @include position(absolute, 0, null, null, 0);
-        z-index: -1;
-        width: 400px;
-        height: 200px;
-
-        background: red;
-    }
 }
 
 .ctn__inner {
     max-width: $grid-max-width;
     margin: 0 auto;
     width: 100%;
+}
+
+for i < 9 {
+    
 }

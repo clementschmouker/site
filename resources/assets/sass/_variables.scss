@@ -3,8 +3,13 @@
 // -------------------------------------------------------
 
 
-// Fonts
+// Screen Size
+$s-wide: 1280px;
+$s-tabletH: 1024px;
+$s-tabletV: 960px;
+$s-smartphone: 768px;
 
+// Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,900");
 
 $f-Raleway: 'Raleway', sans-serif;

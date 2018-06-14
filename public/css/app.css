@@ -35,18 +35,6 @@
   margin: 0 auto;
 }
 
-.ctn::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 400px;
-  height: 200px;
-  background: red;
-}
-
 .ctn__inner {
   max-width: 1024px;
   margin: 0 auto;
