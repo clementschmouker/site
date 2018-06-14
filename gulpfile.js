@@ -31,8 +31,8 @@ elixir((mix) => {
         // sync
         .browserSync({
             files: [
-                'public/**',
-                'resources/**',
+                'public/**/*',
+                'resources/**/*',
             ],
             open: false,
             logPrefix: 'clement',
