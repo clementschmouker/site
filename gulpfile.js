@@ -25,16 +25,12 @@ elixir((mix) => {
         // sync
         .browserSync({
             files: [
-                //'app/**/*',
-                'public/build/*',
-                //'public/**/*',
-                //'resources/views/**/*',
-                'resources/views/admin/*',
-                //'resources/lang/**/*'
+                'public/*',
+                'resources/views/*',
             ],
             open: false,
-            logPrefix: 'yann',
-            proxy: 'yannferrandin.loc',
+            logPrefix: 'clem',
+            proxy: 'clementschmouker.loc',
             notify: false
         });
 })
