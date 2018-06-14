@@ -26,7 +26,7 @@ elixir((mix) => {
         .browserSync({
             files: [
                 'public/*',
-                'resources/views/*',
+                'resources/*',
             ],
             open: false,
             logPrefix: 'todo',
