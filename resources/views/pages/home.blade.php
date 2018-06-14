@@ -6,6 +6,10 @@
         <div class="header__inner">
             <h1 class="header__title">Clément Schmouker <span>Web Developer</span></h1>
         </div>
+
+        <div class="header__waves">
+            {!! file_get_contents(asset('img/home/wave-first.svg')) !!}
+        </div>
     </header>
 
 
