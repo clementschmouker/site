@@ -2,7 +2,7 @@
 
 Hey there :)
 
-npm install
-composer install
+npm install<br>
+composer install<br>
 
-Don't forget to add a new project in Homestead.yaml and /etc/hosts
+Don't forget to add a new project in homestead.yaml and /etc/hosts
