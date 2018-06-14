@@ -4,3 +4,37 @@
 
 $grid-width: 1024px;
 $col-number: 9;
+$gut-width: 10px;
+$margin: 80px;
+
+.grid-container {
+    display: flex;
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 50%;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    max-width: $grid-width;
+    padding: 0 $margin;
+    box-sizing: border-box;
+
+    background: rgba(#BADA55, .3);
+
+    transform-origin: top center;
+    transform: translateX(-50%) scaleY(0);
+
+    transition: all .3s ease-out;
+
+    &.is-open {
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+
+.grid-column {
+    display: block;
+    width: ($grid-width / $col-number - $gut-width) - ($margin * 2 / ($col-number - 1));
+    height: 100%;
+    background: rgba(0, 255, 0, .5);
+}

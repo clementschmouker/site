@@ -1,4 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,900");
+.grid-container {
+  display: flex;
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 50%;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  max-width: 1024px;
+  padding: 0 80px;
+  box-sizing: border-box;
+  background: rgba(186, 218, 85, 0.3);
+  transform-origin: top center;
+  transform: translateX(-50%) scaleY(0);
+  transition: all .3s ease-out;
+}
+
+.grid-container.is-open {
+  transform: translateX(-50%) scaleY(1);
+}
+
+.grid-column {
+  display: block;
+  width: 83.7777777778px;
+  height: 100%;
+  background: rgba(0, 255, 0, 0.5);
+}
+
 html {
   font-size: 62.5%;
 }
