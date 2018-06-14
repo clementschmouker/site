@@ -7650,4 +7650,9 @@ button.close {
   }
 }
 
+body {
+  background: transparent;
+  color: #000;
+}
+
 /*# sourceMappingURL=app.css.map */
