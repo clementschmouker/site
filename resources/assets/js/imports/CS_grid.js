@@ -3,8 +3,6 @@
 export default class CS_grid {
 
     constructor(params) {
-        console.log('init grid')
-
         this.$els = {
             body: document.querySelector('body')
         }
@@ -26,17 +24,13 @@ export default class CS_grid {
     createElements() {
         this.gridCtn = document.createElement('div');
         this.gridCtn.classList.add('grid-container');        
-        // grid CTN style
-
-
         this.gridCols = []
         for (var i = 0; i < this.colNumber; i += 1) {
             const col = document.createElement('span');
             col.classList.add('grid-column');
-            // grid COL style
+            
             this.gridCtn.appendChild(col);
         }
-        // Appends grid to DOM
         this.$els.body.appendChild(this.gridCtn);
     }
 

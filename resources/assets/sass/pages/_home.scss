@@ -6,11 +6,18 @@
 /* Header */
 
 .header {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100vh;
 
     color: $c-dark-text;
+}
+
+.header__canvas {
+    display: block;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 
 .header__inner {
@@ -19,6 +26,15 @@
     left: 50%;
 
     transform: translate(-50%, -50%);
+}
+
+.header__logo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+
+    background: url('../img/logo.svg') no-repeat center center;
+    background-size: contain;
 }
 
 .header__title {
@@ -39,7 +55,7 @@
         content: '';
 
         display: block;
-        width: 60%;
+        width: 30%;
         height: 2px;
         margin: 0 auto;
         
@@ -64,7 +80,7 @@
 .header__waves {
     @include position(absolute, null, null, 0, -10%);
     width: 110%;
-    height: 230px;
+    height: 240px;
     overflow: hidden;
 }
 
@@ -74,9 +90,8 @@
     left: 0%;
     width: 100%;
 
-    // transform: translateX(-50%);
-
     &--1 {
+        z-index: -1;
         animation: washes 20s ease-out infinite;
     }
 
@@ -114,4 +129,9 @@
         background: #020202;
         color: $c-light-text;
     }
+}
+
+.home__section__inner {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
 }

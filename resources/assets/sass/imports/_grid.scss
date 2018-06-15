@@ -54,3 +54,9 @@ $margin: 10%;
     margin: 0 auto;
     width: 100%;
 }
+
+@for $i from 1 to 9 {
+    .col-#{$i} {
+        width: calc((((100% / #{$col-number} #{$i}) * #{$i}) - (#{$gut-width} * #{$i -1})));
+    }
+}
