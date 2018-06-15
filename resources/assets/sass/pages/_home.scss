@@ -9,6 +9,8 @@
     position: relative;
     width: 100%;
     height: 100vh;
+
+    color: $c-dark-text;
 }
 
 .header__inner {
@@ -60,12 +62,56 @@
 }
 
 .header__waves {
-    @include position(absolute, null, null, 0, 0);
-    width: 100%;
-    height: 200px;
+    @include position(absolute, null, null, 0, -10%);
+    width: 110%;
+    height: 230px;
     overflow: hidden;
 }
 
-#header-wave--1 {
-    // transform: skewX(2deg);
+.header__wave {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+
+    // transform: translateX(-50%);
+
+    &--1 {
+        animation: washes 20s ease-out infinite;
+    }
+
+    &--2 {
+        top: 0px;
+
+        animation: washes 17s ease-out infinite;
+    }
+
+    &--3 {
+        top: 35px;
+
+        animation: washes 12s ease-in-out infinite;
+    }
+}
+
+@keyframes washes {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        transform: translateX(5%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+
+// Section
+// ---------------------------------------
+
+.home__section {
+    &--dark {
+        background: #020202;
+        color: $c-light-text;
+    }
 }

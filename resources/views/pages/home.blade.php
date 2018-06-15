@@ -9,12 +9,14 @@
 
         <div class="header__waves">
             {!! file_get_contents(asset('img/home/wave-first.svg')) !!}
+            {!! file_get_contents(asset('img/home/wave-second.svg')) !!}
+            {!! file_get_contents(asset('img/home/wave-third.svg')) !!}
         </div>
     </header>
 
 
 
-    <section class="home__section | ctn">
+    <section class="home__section home__section--dark | ctn">
         <div class="home__section__inner | ctn__inner">
             <h2 class="home__section__title">Wanna check my work ?</h2>
             <p class="home__section__text">If you aren't here by mistake, I bet this is why you came. If not, well, enjoy the ride.</p>
