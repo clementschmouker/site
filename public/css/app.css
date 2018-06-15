@@ -22,7 +22,7 @@
 
 .grid-column {
   display: block;
-  width: calc(((100% / 9) - 10px));
+  width: 9.375%;
   height: 100%;
   background: rgba(0, 255, 0, 0.5);
 }
@@ -42,35 +42,39 @@
 }
 
 .col-1 {
-  width: calc((((100% / 9 1) * 1) - (10px * 1 -1)));
+  width: 9.375%;
 }
 
 .col-2 {
-  width: calc((((100% / 9 2) * 2) - (10px * 2 -1)));
+  width: 20.703125%;
 }
 
 .col-3 {
-  width: calc((((100% / 9 3) * 3) - (10px * 3 -1)));
+  width: 32.03125%;
 }
 
 .col-4 {
-  width: calc((((100% / 9 4) * 4) - (10px * 4 -1)));
+  width: 43.359375%;
 }
 
 .col-5 {
-  width: calc((((100% / 9 5) * 5) - (10px * 5 -1)));
+  width: 54.6875%;
 }
 
 .col-6 {
-  width: calc((((100% / 9 6) * 6) - (10px * 6 -1)));
+  width: 66.015625%;
 }
 
 .col-7 {
-  width: calc((((100% / 9 7) * 7) - (10px * 7 -1)));
+  width: 77.34375%;
 }
 
 .col-8 {
-  width: calc((((100% / 9 8) * 8) - (10px * 8 -1)));
+  width: 88.671875%;
+}
+
+.col-9 {
+  width: 100%;
 }
 
 html {
@@ -92,7 +96,7 @@ h2,
 h3,
 h4 {
   margin: 0;
-  white-space: nowrap;
+  font-family: "Raleway", sans-serif;
 }
 
 /* Header */
@@ -118,6 +122,9 @@ h4 {
 }
 
 .header__logo {
+  position: absolute;
+  bottom: 100%;
+  left: calc(50% - 75px);
   width: 150px;
   height: 150px;
   margin: 0 auto;
@@ -134,9 +141,9 @@ h4 {
 
 .header__title span {
   display: block;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .header__title::after {
@@ -165,13 +172,13 @@ h4 {
   bottom: 0;
   left: -10%;
   width: 110%;
-  height: 240px;
+  height: 100%;
   overflow: hidden;
 }
 
 .header__wave {
   position: absolute;
-  top: 0;
+  bottom: -200px;
   left: 0%;
   width: 100%;
 }
@@ -182,12 +189,12 @@ h4 {
 }
 
 .header__wave--2 {
-  top: 0px;
-  animation: washes 17s ease-out infinite;
+  bottom: -215px;
+  animation: washes 16s ease-out infinite;
 }
 
 .header__wave--3 {
-  top: 35px;
+  bottom: -200px;
   animation: washes 12s ease-in-out infinite;
 }
 
@@ -211,6 +218,10 @@ h4 {
 .home__section__inner {
   padding-top: 12rem;
   padding-bottom: 12rem;
+}
+
+.home__section__title {
+  font-size: 5rem;
 }
 
 /*# sourceMappingURL=app.css.map */
