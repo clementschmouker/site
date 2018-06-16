@@ -12,6 +12,8 @@ export default class Flakes {
         this.createFlakes();
         
         this.renderFlakes();
+
+        this.bindEvents();
     }
 
 
@@ -29,6 +31,22 @@ export default class Flakes {
         this.tempCtx.arc(this.flakeSize / 4, this.flakeSize / 4, this.flakeSize / 4, 0, Math.PI*2);
         this.tempCtx.fill();
     }
+
+
+
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            this.onResize();
+        })
+    }
+
+
+    onResize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+
     
     createFlakes() {
         function Flake() {

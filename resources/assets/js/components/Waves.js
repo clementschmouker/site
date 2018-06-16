@@ -14,9 +14,21 @@ export default class Waves {
             this.waves.push(new Wave(this.$els.waves[i], i));
         }
 
-        console.log(this.waves);
-
+        this.bindEvents();
         this.updateAll()
+    }
+
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            this.onResize();
+        })
+    }
+
+
+    onResize() {
+        this.waves.map((item) => {
+            item.resetStats();
+        })
     }
 
 

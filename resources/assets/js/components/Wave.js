@@ -4,15 +4,15 @@ export default class Wave {
 
     constructor(el, index) {
 
-        var container = document.body;
+        this.container = document.body;
         this.width = window.innerWidth;
-        this.height = container.offsetHeight;
+        this.height = this.container.offsetHeight;
         this.wave = el;
         
         this.waveWidth = this.width;  // Wave SVG width (usually container width)
-        this.waveHeight = window.innerHeight - 100;                   // Position from the top of container
-        this.waveDelta = 10;                     // Wave amplitude
-        this.speed = 0.4;                        // Wave animation this.speed
+        this.waveHeight = window.innerHeight - 200 + (30 * (1+index));                   // Position from the top of container
+        this.waveDelta = 30;                     // Wave amplitude
+        this.speed = 0.2;                        // Wave animation this.speed
         this.wavePoints = 8;                     // How many point will be used to compute our wave
         
         var points = [];
@@ -70,8 +70,13 @@ export default class Wave {
         SVGString += ' L ' + this.width + ' ' + this.height;
         SVGString += ' L 0 ' + this.height + ' Z';
         return SVGString;
-      }
+    }
 
+    resetStats() {
+        this.width = window.innerWidth;
+        this.height = this.container.offsetHeight;
+        this.waveWidth = this.width;  // Wave SVG width (usually container width)
+    }
 
     update() {
         var now = window.Date.now();
@@ -82,7 +87,7 @@ export default class Wave {
       
           this.totalTime += elapsed;
           
-          var factor = (this.index + this.totalTime)*Math.PI;
+          var factor = (this.index * 3 + this.totalTime)*Math.PI;
           this.wave.setAttribute('d', this.buildPath(this.calculateWavePoints(factor)));
         } else {
           this.lastUpdate = now;

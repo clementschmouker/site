@@ -8028,6 +8028,8 @@ var Flakes = function () {
         this.createFlakes();
 
         this.renderFlakes();
+
+        this.bindEvents();
     }
 
     _createClass(Flakes, [{
@@ -8047,10 +8049,25 @@ var Flakes = function () {
             this.tempCtx.fill();
         }
     }, {
+        key: 'bindEvents',
+        value: function bindEvents() {
+            var _this = this;
+
+            window.addEventListener('resize', function () {
+                _this.onResize();
+            });
+        }
+    }, {
+        key: 'onResize',
+        value: function onResize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+    }, {
         key: 'createFlakes',
         value: function createFlakes() {
             function Flake() {
-                var _this = this;
+                var _this2 = this;
 
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
@@ -8062,20 +8079,20 @@ var Flakes = function () {
                     y: Math.random() + 0.1
                 };
                 this.update = function (context, tempCanvas) {
-                    context.globalAlpha = _this.opacity;
-                    _this.x += _this.velocity.x;
-                    _this.y -= _this.velocity.y;
+                    context.globalAlpha = _this2.opacity;
+                    _this2.x += _this2.velocity.x;
+                    _this2.y -= _this2.velocity.y;
 
-                    context.drawImage(tempCanvas, _this.x, _this.y, _this.scale * tempCanvas.width, _this.scale * tempCanvas.height);
+                    context.drawImage(tempCanvas, _this2.x, _this2.y, _this2.scale * tempCanvas.width, _this2.scale * tempCanvas.height);
 
-                    if (_this.y < -_this.size) {
-                        _this.y = window.innerHeight - _this.size;
+                    if (_this2.y < -_this2.size) {
+                        _this2.y = window.innerHeight - _this2.size;
                     }
-                    if (_this.x > window.innerWidth) {
-                        _this.x = -_this.size;
+                    if (_this2.x > window.innerWidth) {
+                        _this2.x = -_this2.size;
                     }
-                    if (_this.x < -_this.size) {
-                        _this.x = window.innerWidth - _this.size;
+                    if (_this2.x < -_this2.size) {
+                        _this2.x = window.innerWidth - _this2.size;
                     }
                 };
             }
@@ -8089,7 +8106,7 @@ var Flakes = function () {
     }, {
         key: 'renderFlakes',
         value: function renderFlakes() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
             for (var i = 0; i < this.flakeArray.length; i += 1) {
@@ -8097,7 +8114,7 @@ var Flakes = function () {
             }
 
             setTimeout(function () {
-                _this2.renderFlakes();
+                _this3.renderFlakes();
             }, 1000 / 60);
         }
     }]);
@@ -8192,15 +8209,15 @@ var Wave = function () {
   function Wave(el, index) {
     _classCallCheck(this, Wave);
 
-    var container = document.body;
+    this.container = document.body;
     this.width = window.innerWidth;
-    this.height = container.offsetHeight;
+    this.height = this.container.offsetHeight;
     this.wave = el;
 
     this.waveWidth = this.width; // Wave SVG width (usually container width)
-    this.waveHeight = window.innerHeight - 100; // Position from the top of container
-    this.waveDelta = 10; // Wave amplitude
-    this.speed = 0.4; // Wave animation this.speed
+    this.waveHeight = window.innerHeight - 200 + 30 * (1 + index); // Position from the top of container
+    this.waveDelta = 30; // Wave amplitude
+    this.speed = 0.2; // Wave animation this.speed
     this.wavePoints = 8; // How many point will be used to compute our wave
 
     var points = [];
@@ -8260,6 +8277,13 @@ var Wave = function () {
       return SVGString;
     }
   }, {
+    key: 'resetStats',
+    value: function resetStats() {
+      this.width = window.innerWidth;
+      this.height = this.container.offsetHeight;
+      this.waveWidth = this.width; // Wave SVG width (usually container width)
+    }
+  }, {
     key: 'update',
     value: function update() {
       var now = window.Date.now();
@@ -8270,7 +8294,7 @@ var Wave = function () {
 
         this.totalTime += elapsed;
 
-        var factor = (this.index + this.totalTime) * Math.PI;
+        var factor = (this.index * 3 + this.totalTime) * Math.PI;
         this.wave.setAttribute('d', this.buildPath(this.calculateWavePoints(factor)));
       } else {
         this.lastUpdate = now;
@@ -8314,22 +8338,37 @@ var Waves = function () {
             this.waves.push(new _Wave2.default(this.$els.waves[i], i));
         }
 
-        console.log(this.waves);
-
+        this.bindEvents();
         this.updateAll();
     }
 
     _createClass(Waves, [{
+        key: 'bindEvents',
+        value: function bindEvents() {
+            var _this = this;
+
+            window.addEventListener('resize', function () {
+                _this.onResize();
+            });
+        }
+    }, {
+        key: 'onResize',
+        value: function onResize() {
+            this.waves.map(function (item) {
+                item.resetStats();
+            });
+        }
+    }, {
         key: 'updateAll',
         value: function updateAll() {
-            var _this = this;
+            var _this2 = this;
 
             this.waves.map(function (item) {
                 item.update();
             });
 
             window.requestAnimationFrame(function () {
-                _this.updateAll();
+                _this2.updateAll();
             });
         }
     }]);
