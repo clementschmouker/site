@@ -39,8 +39,6 @@ export default class Parallax {
                 speed: this.$els.parallaxedItems[i].getAttribute('data-speed'),
             })
         }
-
-        console.log(this.prlx);
     }
 
 }

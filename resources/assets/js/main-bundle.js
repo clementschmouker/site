@@ -8169,8 +8169,6 @@ var Parallax = function () {
                     speed: this.$els.parallaxedItems[i].getAttribute('data-speed')
                 });
             }
-
-            console.log(this.prlx);
         }
     }]);
 
@@ -8186,94 +8184,162 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Waves = function Waves() {
-  _classCallCheck(this, Waves);
+var Wave = function () {
+  function Wave(el, index) {
+    _classCallCheck(this, Wave);
 
-  var container = document.body;
-  var width = container.offsetWidth;
-  var height = container.offsetHeight;
-  var wave = document.querySelector('.wave');
+    var container = document.body;
+    this.width = window.innerWidth;
+    this.height = container.offsetHeight;
+    this.wave = el;
 
-  var waveWidth = container.offsetWidth; // Wave SVG width (usually container width)
-  var waveHeight = window.innerHeight - 100; // Position from the top of container
-  var waveDelta = 10; // Wave amplitude
-  var speed = 0.4; // Wave animation speed
-  var wavePoints = 6; // How many point will be used to compute our wave
+    this.waveWidth = this.width; // Wave SVG width (usually container width)
+    this.waveHeight = window.innerHeight - 100; // Position from the top of container
+    this.waveDelta = 10; // Wave amplitude
+    this.speed = 0.4; // Wave animation this.speed
+    this.wavePoints = 8; // How many point will be used to compute our wave
 
-  var points = [];
-
-  function calculateWavePoints(factor) {
     var points = [];
 
-    for (var i = 0; i <= wavePoints; i++) {
-      var x = i / wavePoints * waveWidth;
-      var sinSeed = (factor + (i + i % wavePoints)) * speed * 100;
-      var sinHeight = Math.sin(sinSeed / 100) * waveDelta;
-      var yPos = Math.sin(sinSeed / 100) * sinHeight + waveHeight;
-      points.push({ x: x, y: yPos });
-    }
+    this.index = index;
 
-    return points;
+    this.lastUpdate;
+    this.totalTime = 0;
+
+    this.update();
   }
 
-  function buildPath(points) {
-    var SVGString = 'M ' + points[0].x + ' ' + points[0].y;
+  _createClass(Wave, [{
+    key: 'calculateWavePoints',
+    value: function calculateWavePoints(factor) {
+      var points = [];
 
-    var cp0 = {
-      x: (points[1].x - points[0].x) / 2,
-      y: points[1].y - points[0].y + points[0].y + (points[1].y - points[0].y)
-    };
+      for (var i = 0; i <= this.wavePoints; i++) {
+        var x = i / this.wavePoints * this.waveWidth;
+        var sinSeed = (factor + (i + i % this.wavePoints)) * this.speed * 100;
+        var sinHeight = Math.sin(sinSeed / 100) * this.waveDelta;
+        var yPos = Math.sin(sinSeed / 100) * sinHeight + this.waveHeight;
+        points.push({ x: x, y: yPos });
+      }
 
-    SVGString += ' C ' + cp0.x + ' ' + cp0.y + ' ' + cp0.x + ' ' + cp0.y + ' ' + points[1].x + ' ' + points[1].y;
+      return points;
+    }
+  }, {
+    key: 'buildPath',
+    value: function buildPath(points) {
+      var SVGString = 'M ' + points[0].x + ' ' + points[0].y;
 
-    var prevCp = cp0;
-    var inverted = -1;
-
-    for (var i = 1; i < points.length - 1; i++) {
-      var cpLength = Math.sqrt(prevCp.x * prevCp.x + prevCp.y * prevCp.y);
-      var cp1 = {
-        x: points[i].x - prevCp.x + points[i].x,
-        y: points[i].y - prevCp.y + points[i].y
+      var cp0 = {
+        x: (points[1].x - points[0].x) / 2,
+        y: points[1].y - points[0].y + points[0].y + (points[1].y - points[0].y)
       };
 
-      SVGString += ' C ' + cp1.x + ' ' + cp1.y + ' ' + cp1.x + ' ' + cp1.y + ' ' + points[i + 1].x + ' ' + points[i + 1].y;
-      prevCp = cp1;
-      inverted = -inverted;
-    };
+      SVGString += ' C ' + cp0.x + ' ' + cp0.y + ' ' + cp0.x + ' ' + cp0.y + ' ' + points[1].x + ' ' + points[1].y;
 
-    SVGString += ' L ' + width + ' ' + height;
-    SVGString += ' L 0 ' + height + ' Z';
-    return SVGString;
-  }
+      var prevCp = cp0;
+      var inverted = -1;
 
-  var lastUpdate;
-  var totalTime = 0;
+      for (var i = 1; i < points.length - 1; i++) {
+        var cpLength = Math.sqrt(prevCp.x * prevCp.x + prevCp.y * prevCp.y);
+        var cp1 = {
+          x: points[i].x - prevCp.x + points[i].x,
+          y: points[i].y - prevCp.y + points[i].y
+        };
 
-  function tick() {
-    var now = window.Date.now();
+        SVGString += ' C ' + cp1.x + ' ' + cp1.y + ' ' + cp1.x + ' ' + cp1.y + ' ' + points[i + 1].x + ' ' + points[i + 1].y;
+        prevCp = cp1;
+        inverted = -inverted;
+      };
 
-    if (lastUpdate) {
-      var elapsed = (now - lastUpdate) / 1000;
-      lastUpdate = now;
+      SVGString += ' L ' + this.width + ' ' + this.height;
+      SVGString += ' L 0 ' + this.height + ' Z';
+      return SVGString;
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      var now = window.Date.now();
 
-      totalTime += elapsed;
+      if (this.lastUpdate) {
+        var elapsed = (now - this.lastUpdate) / 1000;
+        this.lastUpdate = now;
 
-      var factor = totalTime * Math.PI;
-      wave.setAttribute('d', buildPath(calculateWavePoints(factor)));
-    } else {
-      lastUpdate = now;
+        this.totalTime += elapsed;
+
+        var factor = (this.index + this.totalTime) * Math.PI;
+        this.wave.setAttribute('d', this.buildPath(this.calculateWavePoints(factor)));
+      } else {
+        this.lastUpdate = now;
+      }
+    }
+  }]);
+
+  return Wave;
+}();
+
+exports.default = Wave;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Wave = require('./Wave');
+
+var _Wave2 = _interopRequireDefault(_Wave);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Waves = function () {
+    function Waves() {
+        _classCallCheck(this, Waves);
+
+        this.$els = {
+            waves: document.querySelectorAll('.header__wave')
+        };
+
+        this.waves = [];
+
+        for (var i = 0; i < this.$els.waves.length; i += 1) {
+            this.waves.push(new _Wave2.default(this.$els.waves[i], i));
+        }
+
+        console.log(this.waves);
+
+        this.updateAll();
     }
 
-    window.requestAnimationFrame(tick);
-  };
-  tick();
-};
+    _createClass(Waves, [{
+        key: 'updateAll',
+        value: function updateAll() {
+            var _this = this;
+
+            this.waves.map(function (item) {
+                item.update();
+            });
+
+            window.requestAnimationFrame(function () {
+                _this.updateAll();
+            });
+        }
+    }]);
+
+    return Waves;
+}();
 
 exports.default = Waves;
 
-},{}],5:[function(require,module,exports){
+},{"./Wave":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8340,7 +8406,7 @@ var CS_grid = function () {
 
 exports.default = CS_grid;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var _CS_grid = require('./imports/CS_grid');
@@ -8379,7 +8445,7 @@ var waves = new _Waves2.default();
 
 var home = new _Home2.default();
 
-},{"./components/Flakes":2,"./components/Parallax":3,"./components/Waves":4,"./imports/CS_grid":5,"./pages/Home":7}],7:[function(require,module,exports){
+},{"./components/Flakes":2,"./components/Parallax":3,"./components/Waves":5,"./imports/CS_grid":6,"./pages/Home":8}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8496,6 +8562,6 @@ var Home = function () {
 
 exports.default = Home;
 
-},{"gsap":1}]},{},[6]);
+},{"gsap":1}]},{},[7]);
 
 //# sourceMappingURL=main-bundle.js.map

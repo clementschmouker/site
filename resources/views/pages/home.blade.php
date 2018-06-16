@@ -25,8 +25,9 @@
             {!! file_get_contents(asset('img/home/wave-second.svg')) !!}
             {!! file_get_contents(asset('img/home/wave-third.svg')) !!} --}}
             <svg width="100vw" height="100vh" style="position:relative;left:9%;" class="header__waves">
-                <path class="wave" d="" fill="#202020" />
-                <path class="wave" d="" fill=#000 />
+                <path class="header__wave wave--1" d="" fill="#9d9d9d" />
+                <path class="header__wave wave--2" d="" fill="#202020" />
+                <path class="header__wave wave--3" d="" fill=#000 />
             </svg>
         </div>
     </header>
