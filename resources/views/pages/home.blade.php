@@ -21,9 +21,13 @@
         </div>
 
         <div class="header__waves">
-            {!! file_get_contents(asset('img/home/wave-first.svg')) !!}
+            {{-- {!! file_get_contents(asset('img/home/wave-first.svg')) !!}
             {!! file_get_contents(asset('img/home/wave-second.svg')) !!}
-            {!! file_get_contents(asset('img/home/wave-third.svg')) !!}
+            {!! file_get_contents(asset('img/home/wave-third.svg')) !!} --}}
+            <svg width="100vw" height="100vh" style="position:relative;left:9%;" class="header__waves">
+                <path class="wave" d="" fill="#202020" />
+                <path class="wave" d="" fill=#000 />
+            </svg>
         </div>
     </header>
 
