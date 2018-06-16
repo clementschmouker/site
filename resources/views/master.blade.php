@@ -34,8 +34,9 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-    
-        @yield('content')
+        <main class="main__content">
+            @yield('content')
+        </main>
 
         <script type="text/javascript" src="js/main.js"></script>
     </body>

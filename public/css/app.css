@@ -99,6 +99,10 @@ h4 {
   font-family: "Raleway", sans-serif;
 }
 
+p {
+  font-family: sans-serif;
+}
+
 /* Header */
 .header {
   overflow: hidden;
@@ -141,13 +145,20 @@ h4 {
 
 .header__title span {
   display: block;
+}
+
+.header__title span.hide {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.header__title__sub {
   margin-bottom: 1rem;
   font-size: 3rem;
   font-weight: 300;
 }
 
-.header__title::after {
-  content: '';
+.header__title__decorator {
   display: block;
   width: 30%;
   height: 2px;
@@ -155,7 +166,19 @@ h4 {
   background: #222;
   border-radius: 5px;
   transform: scaleX(0);
-  animation: scaleSide .5s .3s ease-out forwards;
+}
+
+.explore-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2.5rem;
+  padding: 1rem 2rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border: 2px solid #040404;
+  background: transparent;
+  border-radius: 5px;
 }
 
 @keyframes scaleSide {
@@ -168,12 +191,105 @@ h4 {
 }
 
 .header__waves {
+  pointer-events: none;
   position: absolute;
   bottom: 0;
   left: -10%;
   width: 110%;
   height: 100%;
   overflow: hidden;
+}
+
+.spaceshuttle {
+  position: absolute;
+  top: -140px;
+  left: 80%;
+  z-index: 100;
+  width: 80px;
+  transform: rotate(-140deg);
+}
+
+.spaceshuttle::before {
+  content: '';
+  display: block;
+  padding-top: 144.91%;
+}
+
+.spaceshuttle__ship {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../img/home/spaceshuttle.svg") no-repeat center center;
+  background-size: contain;
+  animation: float 10s ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-10%);
+  }
+  66% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.spaceshuttle__windows {
+  position: absolute;
+  top: -10%;
+  left: 43%;
+  display: none;
+  width: 45%;
+  height: 45%;
+  background: url("../img/home/shuttle-window.svg") no-repeat center center;
+  background-size: contain;
+}
+
+.lights-on .spaceshuttle__windows {
+  display: block;
+  animation: flickr-lights 3s ease-out;
+}
+
+.spaceshuttle__ambient-light {
+  position: absolute;
+  top: calc(50% - 65px);
+  left: calc(50% - 65px);
+  z-index: -1;
+  height: 130px;
+  width: 130px;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, white 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 75%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  transition: opacity 1s 2.5s ease-out;
+}
+
+.lights-on .spaceshuttle__ambient-light {
+  opacity: 1;
+}
+
+@keyframes flickr-lights {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  11% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .header__wave {
@@ -195,28 +311,29 @@ h4 {
 
 .header__wave--3 {
   bottom: -200px;
+  z-index: 101;
   animation: washes 12s ease-in-out infinite;
 }
 
 @keyframes washes {
   0% {
-    transform: translateX(0%);
+    left: 0;
   }
   50% {
-    transform: translateX(5%);
+    left: 5%;
   }
   100% {
-    transform: translateX(0%);
+    left: 0;
   }
 }
 
 .home__section--dark {
   background: #020202;
-  color: #d7d7d7;
+  color: #eeeeee;
 }
 
 .home__section__inner {
-  padding-top: 12rem;
+  padding-top: 32rem;
   padding-bottom: 12rem;
 }
 

@@ -1,3 +1,3 @@
-<svg  class="header__wave header__wave--1" width="1920" height="424.187" viewBox="0 0 1920 424.187">
+<svg  class="header__wave header__wave--1 parallaxed-item" data-speed="-0.75" width="1920" height="424.187" viewBox="0 0 1920 424.187">
   <path id="header-wave--1" style="fill:#9d9d9d;" data-name="Forme 3" d="M-39,695s161-34,312-39,384,95.5,540,91,445.5-61,618-57,343,34.5,533,30-17,480-17,480l-2008,9Z" transform="translate(0 -655.813)"/>
 </svg>

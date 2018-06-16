@@ -1,86 +1,94 @@
-// ---------------------------------------
-// HOME
-// ----------------------------------------
 
+import TweenMax from 'gsap';
 
 export default class Home {
 
     constructor() {
+        this.$els = {
+            logo:           document.querySelector('.header__logo'),
+            title:          document.querySelector('.header__title__main'),
+            subtitle:       document.querySelector('.header__title__sub'),
+            titleDecorator: document.querySelector('.header__title__decorator'),
+            spans:          document.querySelectorAll('.header__title span'),
+            //shuttle
+            shuttle:        document.querySelector('.spaceshuttle'),
+            exploreBtn:     document.querySelector('.explore-button'),
+        }
 
-        this.canvas = document.querySelector('.header__canvas');
-        this.setupCanvas();
-        this.createFlakes();
-        
-        this.render();
+        this.lightsOnThreshold = document.querySelector('.section__first').getBoundingClientRect().top + window.pageYOffset;
+
+        this.initTitle()
+        this.bindEvents()
     }
 
 
-    setupCanvas() {
-        this.ctx = this.canvas.getContext('2d');
+    initTitle() {
 
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        for (let i = 0; i < this.$els.spans.length; i += 1) {
+            this.$els.spans[i].classList.add('hide');
+        }
 
-        this.tempCanvas = document.createElement('canvas');
-        this.tempCtx = this.tempCanvas.getContext('2d');
-        this.flakeSize = 20;
-        this.tempCanvas.width = this.flakeSize / 2;
-        this.tempCanvas.height = this.flakeSize / 2;
-        this.tempCtx.arc(this.flakeSize / 4, this.flakeSize / 4, this.flakeSize / 4, 0, Math.PI*2);
-        this.tempCtx.fill();
-    }
-    
-    createFlakes() {
-        function Flake() {
-            this.x = Math.random() * window.innerWidth;
-            this.y = Math.random() * window.innerHeight;
-            this.scale = Math.random();
-            this.opacity = Math.random();
-            this.size = 10;
-            this.velocity = {
-                x: (Math.random() - 0.5) *2,
-                y: Math.random() + 0.1,
+        TweenMax.fromTo(this.$els.logo, 0.2, {
+            y: "-50%",
+            opacity: 0,
+            ease: Power2.easeOut,
+            force3D: true,
+        }, {
+            y: "0%",
+            opacity: 1,
+
+            onComplete: () => {
+                this.animateTitle();
             }
-            this.update = (context, tempCanvas) => {
-                context.globalAlpha = this.opacity;
-                this.x += this.velocity.x;
-                this.y -= this.velocity.y;
+        });
+    }
 
-                context.drawImage(tempCanvas,
-                                   this.x,
-                                   this.y,
-                                   this.scale*tempCanvas.width,
-                                   this.scale*tempCanvas.height);
-
-                if (this.y < -this.size) {
-                    this.y = window.innerHeight - this.size;
-                }
-                if (this.x > window.innerWidth) {
-                    this.x = -this.size;
-                }
-                if (this.x < -this.size) {
-                    this.x = window.innerWidth - this.size;
-                }
-            }
-        }
-
-        this.flakeArray = [];
-        this.flakeNumber = 125;
-        for (var i = 0; i < this.flakeNumber; i += 1) {
-            this.flakeArray.push(new Flake());
-        }
+    animateTitle() {
+        TweenMax.staggerFromTo(this.$els.spans, 0.5, {
+            y: "100%",
+            opacity: 0,
+            force3D: true,
+        }, {
+            y: "0%",
+            opacity: 1,
+        }, 0.2, () => {
+            TweenMax.to(this.$els.titleDecorator, 0.5, {
+                scaleX: 1,
+            })
+        })
     }
 
 
-    render() {
-        this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        for (let i = 0; i < this.flakeArray.length; i += 1) {
-            this.flakeArray[i].update(this.ctx, this.tempCanvas);
-        }
 
-        setTimeout(() => {
-            this.render()
-        }, 1000/60)
+    bindEvents() {
+        this.$els.exploreBtn.addEventListener('click', () => {
+            this.dropShuttle();
+        })
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset + window.innerHeight / 2 > this.lightsOnThreshold) {
+                this.flickrShuttleLights();
+            }
+        })
+    }
+
+
+
+
+    dropShuttle() {
+
+        TweenMax.to(this.$els.shuttle, 2.4, {
+            y: window.innerHeight + 200,
+            x: -window.innerWidth * 3 / 5,
+            ease: Power4.easeOut,
+            force3D: true,
+        })
+    }
+
+
+
+    flickrShuttleLights() {
+        this.$els.shuttle.classList.add('lights-on');
     }
 
 }

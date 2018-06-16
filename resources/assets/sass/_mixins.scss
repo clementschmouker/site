@@ -9,6 +9,15 @@
     left: $left;
 }
 
+@mixin ratio($size) {
+    &::before {
+        content: '';
+        display: block;
+        padding-top: $size;
+
+    }
+}
+
 
 @mixin maxw($size) {
     @media screen and (max-width: $size) {

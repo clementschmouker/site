@@ -1,12 +1,23 @@
 @extends('master')
 
 @section('content')
+    <div class="spaceshuttle">
+        <div class="spaceshuttle__ship">
+            <div class="spaceshuttle__windows"></div>
+        </div>
+        <div class="spaceshuttle__ambient-light"></div>
+    </div>
 
     <header class="header">
         <canvas class="header__canvas"></canvas>
         <div class="header__inner">
             <div class="header__logo"></div>
-            <h1 class="header__title">Clément Schmouker <span>Web Developer</span></h1>
+            <h1 class="header__title">
+                <span class="header__title__main">Clément Schmouker</span>
+                <span class="header__title__sub">Web Developer</span>
+                <div class="header__title__decorator"></div>
+            </h1>
+            <button class="explore-button">Explore more</button>
         </div>
 
         <div class="header__waves">
@@ -18,7 +29,7 @@
 
 
 
-    <section class="home__section home__section--dark | ctn">
+    <section class="home__section section__first home__section--dark | ctn">
         <div class="home__section__inner | ctn__inner">
             <div class="section__left">
                 <h2 class="home__section__title">Wanna see my work&nbsp;?</h2>
