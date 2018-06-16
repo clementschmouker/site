@@ -223,7 +223,7 @@ p {
   left: 0;
   background: url("../img/home/spaceshuttle.svg") no-repeat center center;
   background-size: contain;
-  animation: float 10s ease-in-out;
+  animation: float 10s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -272,6 +272,19 @@ p {
 
 .lights-on .spaceshuttle__ambient-light {
   opacity: 1;
+  animation: occilate 5s ease-in-out infinite;
+}
+
+@keyframes occilate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes flickr-lights {
