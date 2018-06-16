@@ -78,6 +78,8 @@
 
 .explore-button {
     display: block;
+    overflow: hidden;
+    position: relative;
     margin: 0 auto;
     margin-top: 2.5rem;
     padding: 1rem 2rem;
@@ -86,9 +88,50 @@
     font-size: 1.4rem;
     font-weight: 600;
 
+    outline: 0;
+
     border: 2px solid $c-dark-text;
     background: transparent;
     border-radius: 5px;
+
+    &::before,
+    &::after {
+        content: '';
+        @include position(absolute, 0, null, null, 0);
+        z-index: -1;
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        background: $c-dark-text;
+
+        transform: skew(20deg);
+        transition: all .3s ease-in-out;
+    }
+
+    &::before {
+        transform: skew(20deg) translateX(-110%);
+    }
+
+    &::after {
+        left: auto;
+        right: 0;
+
+        transform: skew(20deg) translateX(110%);
+    }
+
+    &:hover {
+        color: $c-light-text;
+
+        &::before {
+            transform: skew(20deg) translateX(-5%);
+        }
+        &::after {
+            transform: skew(20deg) translateX(5%);
+        }
+    }
+
 }
 
 @keyframes scaleSide {
