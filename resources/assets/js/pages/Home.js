@@ -17,6 +17,8 @@ export default class Home {
 
         this.lightsOnThreshold = document.querySelector('.section__first').getBoundingClientRect().top + window.pageYOffset;
 
+        this.shuttleLaunched = false;
+
         this.initTitle()
         this.bindEvents()
     }
@@ -63,9 +65,15 @@ export default class Home {
     bindEvents() {
         this.$els.exploreBtn.addEventListener('click', () => {
             this.dropShuttle();
+            this.shuttleLaunched = true;
         })
 
         window.addEventListener('scroll', () => {
+            if (!this.shuttleLaunched) {
+                this.dropShuttle();
+                this.shuttleLaunched = true;
+            }
+
             if (window.pageYOffset + window.innerHeight / 2 > this.lightsOnThreshold) {
                 this.flickrShuttleLights();
             }

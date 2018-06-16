@@ -17,22 +17,22 @@
                 <span class="header__title__sub">Web Developer</span>
                 <div class="header__title__decorator"></div>
             </h1>
-            <button class="explore-button">Explore more</button>
+            <button class="explore-button">Dive In</button>
         </div>
 
         <div class="header__waves">
             {{-- {!! file_get_contents(asset('img/home/wave-first.svg')) !!}
             {!! file_get_contents(asset('img/home/wave-second.svg')) !!}
             {!! file_get_contents(asset('img/home/wave-third.svg')) !!} --}}
-            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--1">
+            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--1 parallaxed-item" data-speed="-2">
                 <path class="header__wave wave--1" d="" fill="#9d9d9d" />
             </svg>
             
-            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--2">
+            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--2 parallaxed-item" data-speed="-1">
                 <path class="header__wave wave--2" d="" fill="#202020" />
             </svg>
-            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--3">
-               <path class="header__wave wave--3" d="" fill=#000 />
+            <svg width="100vw" height="100vh" class="header__waves__svg header__waves__svg--3 parallaxed-item" data-speed="0">
+               <path class="header__wave wave--3" d="" fill=#040404 />
             </svg>
         </div>
     </header>

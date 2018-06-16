@@ -1,5 +1,7 @@
 
 
+// heavily inspired by https://codepen.io/grimor/pen/qbXLdN
+
 export default class Wave {
 
     constructor(el, index) {

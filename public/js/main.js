@@ -8205,6 +8205,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// heavily inspired by https://codepen.io/grimor/pen/qbXLdN
+
 var Wave = function () {
   function Wave(el, index) {
     _classCallCheck(this, Wave);
@@ -8518,6 +8520,8 @@ var Home = function () {
 
         this.lightsOnThreshold = document.querySelector('.section__first').getBoundingClientRect().top + window.pageYOffset;
 
+        this.shuttleLaunched = false;
+
         this.initTitle();
         this.bindEvents();
     }
@@ -8570,9 +8574,15 @@ var Home = function () {
 
             this.$els.exploreBtn.addEventListener('click', function () {
                 _this3.dropShuttle();
+                _this3.shuttleLaunched = true;
             });
 
             window.addEventListener('scroll', function () {
+                if (!_this3.shuttleLaunched) {
+                    _this3.dropShuttle();
+                    _this3.shuttleLaunched = true;
+                }
+
                 if (window.pageYOffset + window.innerHeight / 2 > _this3.lightsOnThreshold) {
                     _this3.flickrShuttleLights();
                 }
