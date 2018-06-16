@@ -170,6 +170,7 @@
     width: 130px;
 
     opacity: 0;
+    transition: opacity 1s 2.5s ease-out;
 
     &::before {
         content: '';
@@ -179,7 +180,6 @@
 
         background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255, 255, 255, 0.3) 30% ,rgba(255,255,255,0) 75%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     
-        transition: opacity 1s 2.5s ease-out;
     }
 
     .lights-on & {
