@@ -265,6 +265,13 @@ p {
   height: 130px;
   width: 130px;
   opacity: 0;
+}
+
+.spaceshuttle__ambient-light::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(ellipse at center, white 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 75%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   transition: opacity 1s 2.5s ease-out;
@@ -272,6 +279,9 @@ p {
 
 .lights-on .spaceshuttle__ambient-light {
   opacity: 1;
+}
+
+.lights-on .spaceshuttle__ambient-light::before {
   animation: occilate 5s ease-in-out infinite;
 }
 
